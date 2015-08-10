@@ -9,3 +9,9 @@ test:
   post:
     - docker run -d -p 8080:8080 caerusassociates/cliff; sleep 20
     - curl --retry 10 --retry-delay 5 -v http://localhost:8080/CLIFF-2.0.0/parse/text?q=I%20live%20in%20Virginia.
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push caerusassociates/cliff
